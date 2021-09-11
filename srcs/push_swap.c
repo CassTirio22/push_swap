@@ -6,11 +6,23 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/11 15:08:39 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/11 17:44:27 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static void	print_stack(t_stack *stack)
+{
+	while (stack->previous)
+		stack = stack->previous;
+	while (stack->next)
+	{
+		printf("%d\n", stack->value);
+		stack = stack->next;
+	}
+	printf("%d\n", stack->value);
+}
 
 void	ft_error(int tag)
 {
@@ -32,5 +44,6 @@ int main(int argc, char **argv)
 	if (argc == 1)
 		ft_error(0);
 	fill_stack_a(argc, argv, &data);
+	print_stack(data.a);
 	return (0);
 }

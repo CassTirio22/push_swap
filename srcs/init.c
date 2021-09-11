@@ -6,31 +6,32 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 14:07:52 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/11 15:15:35 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/11 17:44:47 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	add_number(int value, t_stack *a)
+static void	add_number(int value, t_stack **a)
 {
-	if (!a)
+	if (!*a)
 	{
-		a = (t_stack *)malloc(sizeof(t_stack));
-		if (!a)
+		*a = (t_stack *)malloc(sizeof(t_stack));
+		if (!*a)
 			ft_error(1);
-		a->value = value;
-		a->previous = NULL;
-		a->next = NULL;
+		(*a)->value = value;
+		(*a)->previous = NULL;
+		(*a)->next = NULL;
 	}
 	else
 	{
-		a->next = (t_stack *)malloc(sizeof(t_stack));
-		if (!a->next)
+		(*a)->next = (t_stack *)malloc(sizeof(t_stack));
+		if (!(*a)->next)
 			ft_error(1);
-		a->next->value = value;
-		a->next->previous = a;
-		a->next->next = NULL;
+		(*a)->next->value = value;
+		(*a)->next->previous = *a;
+		(*a)->next->next = NULL;
+		(*a) = (*a)->next;
 	}
 }
 
@@ -41,7 +42,7 @@ void	fill_stack_a(int argc, char **argv, t_data *data)
 	int	prev_char;
 
 	i = 0;
-	while (i++ < argc)
+	while (++i < argc)
 	{
 		prev_char = 1;
 		j = -1;
@@ -54,7 +55,7 @@ void	fill_stack_a(int argc, char **argv, t_data *data)
 				ft_error(2);
 			prev_char = 0;
 		}
-		add_number(ft_atoi(argv[i]), data->a);
+		add_number(ft_atoi(argv[i]), &data->a);
 	}
 	return ;
 }

@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/11 12:48:35 by ctirions          #+#    #+#              #
-#    Updated: 2021/09/11 14:12:34 by ctirions         ###   ########.fr        #
+#    Updated: 2021/09/11 16:55:47 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ RESET		=	$(shell tput -Txterm sgr0)
 SRCS		=	push_swap.c	\
 				command1.c	\
 				command2.c	\
-				init.c
+				init.c		\
 
 OBJS		=	$(addprefix srcs/, ${SRCS:.c=.o})
 

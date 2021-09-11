@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/11 14:42:56 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/11 17:44:06 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,18 @@ typedef struct s_data
 */
 
 void	fill_stack_a(int argc, char **argv, t_data *data);
+void	ft_error(int tag);
 
 /*
 **		COMMANDS
 */
 
-void	swap(t_stack *stack);
+void	swap(t_stack **stack);
 void	swap_all(t_data *data);
-void	push(t_stack *old_stack, t_stack *new_stack);
-void	rotate(t_stack *stack);
+void	push(t_stack **old_stack, t_stack **new_stack);
+void	rotate(t_stack **stack);
 void	rotate_all(t_data *data);
-void	reverse_rotate(t_stack *stack);
+void	reverse_rotate(t_stack **stack);
 void	reverse_rotate_all(t_data *data);
 
 #endif
