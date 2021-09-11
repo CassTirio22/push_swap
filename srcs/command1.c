@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:28:56 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/11 17:44:15 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/11 20:09:18 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,35 @@ void	swap_all(t_data *data)
 	swap(&data->b);
 }
 
-void	push(t_stack **old_stack, t_stack **new_stack)
+void	push(t_stack **old, t_stack **new)
 {
-	if (!(*old_stack))
+	int	tmp;
+	
+	if (!*old)
 		return ;
-	while ((*old_stack)->previous)
-		*old_stack = (*old_stack)->previous;
-	while ((*new_stack)->previous)
-		*new_stack = (*new_stack)->previous;
-	(*old_stack)->next->previous = NULL;
-	(*new_stack)->previous = *old_stack;
+	while ((*old)->previous)
+		*old = (*old)->previous;
+	tmp = (*old)->value;
+	*old = (*old)->next;
+	free((*old)->previous);
+	(*old)->previous = NULL;
+	if (*new)
+	{
+		while ((*new)->previous)
+			*new = (*new)->previous;
+		(*new)->previous = (t_stack *)malloc(sizeof(t_stack));
+		if (!(*new)->previous)
+			ft_error(1);
+		(*new)->previous->next = *new;
+		(*new)->previous->value = tmp;
+	}
+	else
+	{
+		*new = (t_stack *)malloc(sizeof(t_stack));
+		if (!*new)
+			ft_error(1);
+		(*new)->value = tmp;
+		(*new)->previous = NULL;
+		(*new)->next = NULL;
+	}
 }
