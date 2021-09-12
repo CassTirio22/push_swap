@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:28:56 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/11 20:09:18 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/12 15:33:44 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,13 @@ void	swap_all(t_data *data)
 void	push(t_stack **old, t_stack **new)
 {
 	int	tmp;
-	
-	if (!*old)
-		return ;
-	while ((*old)->previous)
-		*old = (*old)->previous;
-	tmp = (*old)->value;
-	*old = (*old)->next;
-	free((*old)->previous);
-	(*old)->previous = NULL;
-	if (*new)
+
+	if (*old)
 	{
-		while ((*new)->previous)
-			*new = (*new)->previous;
-		(*new)->previous = (t_stack *)malloc(sizeof(t_stack));
-		if (!(*new)->previous)
-			ft_error(1);
-		(*new)->previous->next = *new;
-		(*new)->previous->value = tmp;
-	}
-	else
-	{
-		*new = (t_stack *)malloc(sizeof(t_stack));
-		if (!*new)
-			ft_error(1);
-		(*new)->value = tmp;
-		(*new)->previous = NULL;
-		(*new)->next = NULL;
+		while ((*old)->previous)
+			*old = (*old)->previous;
+		tmp = (*old)->value;
+		del_top_stack(old);
+		add_top_stack(new, tmp);
 	}
 }

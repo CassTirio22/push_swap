@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/11 12:48:35 by ctirions          #+#    #+#              #
-#    Updated: 2021/09/11 16:55:47 by ctirions         ###   ########.fr        #
+#    Updated: 2021/09/12 15:03:32 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS		=	push_swap.c	\
 				command1.c	\
 				command2.c	\
 				init.c		\
+				top_stack.c	\
 
 OBJS		=	$(addprefix srcs/, ${SRCS:.c=.o})
 

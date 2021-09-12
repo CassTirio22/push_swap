@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:56:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/11 19:04:34 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/12 15:47:55 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	rotate(t_stack **stack)
 	(*stack)->next->previous = NULL;
 	while ((*stack)->next)
 		*stack = (*stack)->next;
+	tmp->previous = *stack;
 	(*stack)->next = tmp;
 	(*stack)->next->next = NULL;
 }

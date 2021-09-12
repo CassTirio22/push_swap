@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/11 20:16:47 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/12 15:52:48 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,31 @@ static	void	duplicate_nbr(t_stack *stack, int argc)
 	}
 }
 
-static void	print_stack(t_stack *stack)
+void	print_stacks(t_data data)
 {
-	if (!stack)
-		return ;
-	while (stack->previous)
-		stack = stack->previous;
-	while (stack->next)
+	if (data.a)
 	{
-		printf("%d\n", stack->value);
-		stack = stack->next;
+		while (data.a->previous)
+			data.a = data.a->previous;
 	}
-	printf("%d\n", stack->value);
-	printf("-------------\n");
+	if (data.b)
+	{
+		while (data.b->previous)
+			data.b = data.b->previous;
+	}
+	while (data.a || data.b)
+	{
+		if (data.a && data.b)
+			ft_printf("%10d|%d\n", data.a->value, data.b->value);
+		else if (data.a)
+			ft_printf("%10d|\n", data.a->value);
+		else
+			ft_printf("          |%d\n", data.b->value);
+		if (data.a)
+			data.a = data.a->next;
+		if (data.b)
+			data.b = data.b->next;
+	}
 }
 
 void	ft_error(int tag)
@@ -57,18 +69,48 @@ void	ft_error(int tag)
 	exit(1);
 }
 
+void	make_commands(t_data *data)
+{
+	char	*line;
+
+	line = NULL;
+	while (get_next_line(0, &line))
+	{
+		if (!ft_strncmp(line, "pa", 3))
+			push(&data->b, &data->a);
+		else if (!ft_strncmp(line, "pb", 3))
+			push(&data->a, &data->b);
+		else if (!ft_strncmp(line, "rra", 4))
+			reverse_rotate(&data->a);
+		else if (!ft_strncmp(line, "rrb", 4))
+			reverse_rotate(&data->b);
+		else if (!ft_strncmp(line, "ra", 2))
+			rotate(&data->a);
+		else if (!ft_strncmp(line, "rb", 3))
+			rotate(&data->b);
+		else if (!ft_strncmp(line, "rr", 3))
+			rotate_all(data);
+		else if (!ft_strncmp(line, "rrr", 4))
+			reverse_rotate_all(data);
+		//ft_printf("\033[H\033[2J");
+		print_stacks(*data);
+		free(line);
+		line = NULL;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	t_data	data;
 
+	ft_printf("\033[H\033[2J");
 	data.a = NULL;
 	data.b = NULL;
 	if (argc == 1)
 		ft_error(0);
 	fill_stack_a(argc, argv, &data);
 	duplicate_nbr(data.a, argc);
-	print_stack(data.a);
-	push(&data.a, &data.b);
-	print_stack(data.b);
+	print_stacks(data);
+	make_commands(&data);
 	return (0);
 }

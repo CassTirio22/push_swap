@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/11 17:44:06 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/12 15:00:56 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ typedef struct s_data
 **
 */
 
+void	add_top_stack(t_stack **top, int value);
+void	del_top_stack(t_stack **top);
 void	fill_stack_a(int argc, char **argv, t_data *data);
+void	print_stacks(t_data data);
 void	ft_error(int tag);
 
 /*
