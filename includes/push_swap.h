@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/12 15:00:56 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/12 19:36:35 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ typedef struct s_data
 **
 */
 
-void	add_top_stack(t_stack **top, int value);
-void	del_top_stack(t_stack **top);
+void	solve_max_5(t_data *data);
+t_stack	*tern_stack(int boolean, t_stack *a, t_stack *b);
+int		stack_len(t_data *data, char name);
+void	add_top_stack(t_data *data, char name, int value);
+void	del_top_stack(t_data *data, char name);
 void	fill_stack_a(int argc, char **argv, t_data *data);
 void	print_stacks(t_data data);
 void	ft_error(int tag);
@@ -42,12 +45,12 @@ void	ft_error(int tag);
 **		COMMANDS
 */
 
-void	swap(t_stack **stack);
+void	swap(t_data *data, char name);
 void	swap_all(t_data *data);
-void	push(t_stack **old_stack, t_stack **new_stack);
-void	rotate(t_stack **stack);
+void	push(t_data *data, char name);
+void	rotate(t_data *data, char name);
 void	rotate_all(t_data *data);
-void	reverse_rotate(t_stack **stack);
+void	reverse_rotate(t_data *data, char name);
 void	reverse_rotate_all(t_data *data);
 
 #endif

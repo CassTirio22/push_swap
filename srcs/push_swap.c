@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/12 15:52:48 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/12 19:42:20 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +77,22 @@ void	make_commands(t_data *data)
 	while (get_next_line(0, &line))
 	{
 		if (!ft_strncmp(line, "pa", 3))
-			push(&data->b, &data->a);
+			push(data, 'a');
 		else if (!ft_strncmp(line, "pb", 3))
-			push(&data->a, &data->b);
+			push(data, 'b');
 		else if (!ft_strncmp(line, "rra", 4))
-			reverse_rotate(&data->a);
+			reverse_rotate(data, 'a');
 		else if (!ft_strncmp(line, "rrb", 4))
-			reverse_rotate(&data->b);
+			reverse_rotate(data, 'b');
 		else if (!ft_strncmp(line, "ra", 2))
-			rotate(&data->a);
+			rotate(data, 'a');
 		else if (!ft_strncmp(line, "rb", 3))
-			rotate(&data->b);
+			rotate(data, 'b');
 		else if (!ft_strncmp(line, "rr", 3))
 			rotate_all(data);
 		else if (!ft_strncmp(line, "rrr", 4))
 			reverse_rotate_all(data);
-		//ft_printf("\033[H\033[2J");
+		ft_printf("\033[H\033[2J");
 		print_stacks(*data);
 		free(line);
 		line = NULL;
@@ -111,6 +111,9 @@ int main(int argc, char **argv)
 	fill_stack_a(argc, argv, &data);
 	duplicate_nbr(data.a, argc);
 	print_stacks(data);
-	make_commands(&data);
+	ft_printf("----------------------------------\n");
+	//swap(&data, 'a');
+	solve_max_5(&data);
+	print_stacks(data);
 	return (0);
 }

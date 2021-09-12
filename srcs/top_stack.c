@@ -6,54 +6,65 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 14:31:11 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/12 15:33:25 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/12 19:03:09 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	del_top_stack(t_stack **top)
+void	del_top_stack(t_data *data, char name)
 {
-	if (*top)
+	t_stack	*stack;
+
+	if (name == 'a')
+		stack = data->a;
+	else
+		stack = data->b;
+	if (stack)
 	{
-		while ((*top)->previous)
-			*top = (*top)->previous;
-		if ((*top)->next == NULL)
+		while (stack->previous)
+			stack = stack->previous;
+		if (stack->next == NULL)
 		{
-			free(*top);
-			*top = NULL;
+			free(stack);
+			stack = NULL;
 		}
 		else
 		{
-			*top = (*top)->next;
-			free((*top)->previous);
-			(*top)->previous = NULL;
+			stack = stack->next;
+			free(stack->previous);
+			stack->previous = NULL;
 		}
 	}
 }
 
-void	add_top_stack(t_stack **top, int value)
+void	add_top_stack(t_data *data, char name, int value)
 {
 	t_stack	*tmp;
+	t_stack	*stack;
 
-	if (*top)
+	if (name == 'a')
+		stack = data->a;
+	else
+		stack = data->b;
+	if (stack)
 	{
 		tmp = (t_stack *)malloc(sizeof(t_stack));
 		if (!tmp)
 			ft_error(1);
-		tmp->next = *top;
+		tmp->next = stack;
 		tmp->previous = NULL;
-		(*top)->previous = tmp;
+		stack->previous = tmp;
 		tmp->value = value;
-		*top = (*top)->previous;
+		stack = stack->previous;
 	}
 	else
 	{
-		*top = (t_stack *)malloc(sizeof(t_stack));
-		if (!*top)
+		stack = (t_stack *)malloc(sizeof(t_stack));
+		if (!stack)
 			ft_error(1);
-		(*top)->next = NULL;
-		(*top)->previous = NULL;
-		(*top)->value = value;
+		stack->next = NULL;
+		stack->previous = NULL;
+		stack->value = value;
 	}
 }

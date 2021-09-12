@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/11 12:48:35 by ctirions          #+#    #+#              #
-#    Updated: 2021/09/12 15:03:32 by ctirions         ###   ########.fr        #
+#    Updated: 2021/09/12 19:18:20 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,13 @@ BLUE		=	$(shell tput -Txterm setaf 6)
 WHITE		=	$(shell tput -Txterm setaf 7)
 RESET		=	$(shell tput -Txterm sgr0)
 
-SRCS		=	push_swap.c	\
-				command1.c	\
-				command2.c	\
-				init.c		\
-				top_stack.c	\
+SRCS		=	push_swap.c		\
+				command1.c		\
+				command2.c		\
+				init.c			\
+				top_stack.c		\
+				solve_max_5.c	\
+				utils.c			\
 
 OBJS		=	$(addprefix srcs/, ${SRCS:.c=.o})
 
