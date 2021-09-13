@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:28:56 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/12 19:25:17 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/13 18:42:10 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,29 @@ void	swap_all(t_data *data)
 	swap(data, 'b');
 }
 
-void	push(t_data *data, char name)
+void	push_a(t_data *data)
 {
-	t_stack *old;
-	t_stack *new;
 	int		tmp;
-
-	old = tern_stack(name == 'a', data->b, data->a);
-	new = tern_stack(name == 'a', data->a, data->b);
-	if (old)
+	
+	if (data->b)
 	{
-		while (old->previous)
-			old = old->previous;
-		tmp = old->value;
-		add_top_stack(data, name, tmp);
-		del_top_stack(data, ft_ternchar(name == 'a', 'b', 'a'));
+		data->b = go_start(data, 'b');
+		tmp = data->b->value;
+		del_top_stack(data, 'b');
+		add_top_stack(data, 'a', tmp);
+	}
+	
+}
+
+void	push_b(t_data *data)
+{
+	int		tmp;
+	
+	if (data->a)
+	{
+		data->a = go_start(data, 'a');
+		tmp = data->a->value;
+		del_top_stack(data, 'a');
+		add_top_stack(data, 'b', tmp);
 	}
 }

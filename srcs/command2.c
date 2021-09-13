@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:56:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/12 19:30:47 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/13 20:14:10 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	rotate(t_data *data, char name)
 
 	stack = tern_stack(name == 'a', data->a, data->b);
 	while (stack->previous)
-	stack = stack->previous;
+		stack = stack->previous;
 	tmp = stack;
 	stack->next->previous = NULL;
 	while (stack->next)
-	stack = stack->next;
+		stack = stack->next;
 	tmp->previous = stack;
 	stack->next = tmp;
 	stack->next->next = NULL;
@@ -42,11 +42,11 @@ void	reverse_rotate(t_data *data, char name)
 
 	stack = tern_stack(name == 'a', data->a, data->b);
 	while (stack->next)
-	stack = stack->next;
+		stack = stack->next;
 	tmp = stack;
 	stack->previous->next = NULL;
 	while (stack->previous)
-	stack = stack->previous;
+		stack = stack->previous;
 	stack->previous = tmp;
 	stack->previous->previous = NULL;
 	stack->previous->next = stack;
