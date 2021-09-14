@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/13 20:31:08 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/14 16:29:08 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,16 @@ int main(int argc, char **argv)
 {
 	t_data	data;
 
-	//ft_printf("\033[H\033[2J");
+	ft_printf("\033[H\033[2J");
 	data.a = NULL;
 	data.b = NULL;
 	if (argc == 1)
 		ft_error(0);
 	fill_stack_a(argc, argv, &data);
 	duplicate_nbr(data.a, argc);
-	ft_printf("--------------------------\n");
-	solve_max_5(&data);
+	find_chunks(&data);
+//	solve_max_5(&data);
 //	make_commands(&data);
-	print_stacks(data);
+//	print_stacks(data);
 	return (0);
 }

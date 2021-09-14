@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 19:17:51 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/13 15:52:46 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/14 15:37:32 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	stack_len(t_data *data, char name)
 	int		size;
 
 	stack = tern_stack(name == 'a', data->a, data->b);
+	if (!stack)
+		return (0);
 	while (stack->previous)
 		stack = stack->previous;
 	size = 0;

@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 18:20:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/13 20:45:10 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/14 13:56:18 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,8 @@ static void	solve_5(t_data *data)
 	data->a = go_start(data, 'a');
 	i = -1;
 	if (tmp < 3)
-	{
 		while (tmp--)
 			rotate(data, 'a');
-	}
 	else
 		while (++i < 5 - tmp)
 			reverse_rotate(data, 'a');

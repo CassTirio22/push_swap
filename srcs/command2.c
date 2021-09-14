@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:56:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/13 20:14:10 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/14 14:01:16 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	rotate(t_data *data, char name)
 	tmp->previous = stack;
 	stack->next = tmp;
 	stack->next->next = NULL;
+	ft_printf("r%c\n", name);
 }
 
 void	rotate_all(t_data *data)
@@ -50,6 +51,7 @@ void	reverse_rotate(t_data *data, char name)
 	stack->previous = tmp;
 	stack->previous->previous = NULL;
 	stack->previous->next = stack;
+	ft_printf("rr%c\n", name);
 }
 
 void	reverse_rotate_all(t_data *data)

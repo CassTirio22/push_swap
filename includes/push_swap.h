@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/13 18:33:00 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/14 16:18:42 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ typedef struct	s_stack
 
 typedef struct s_data
 {
+	int		hold_first;
+	int		hold_last;
+	int		quarter;
+	int		half;
+	int		third_quarter;
 	int		smallest;
 	int		biggest;
 	t_stack	*a;
@@ -34,6 +39,10 @@ typedef struct s_data
 **
 */
 
+int		find_hold_first(t_data *data, int min, int max);
+int		find_hold_last(t_data *data, int min, int max);
+void	move_chunk(t_data *data);
+void	find_chunks(t_data *data);
 void	find_biggest(t_data *data, char name);
 void	find_smallest(t_data *data, char name);
 t_stack	*go_end(t_data *data, char name);

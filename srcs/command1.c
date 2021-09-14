@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:28:56 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/13 18:42:10 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/14 14:00:00 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	swap(t_data *data, char name)
 		stack->value = stack->next->value;
 		stack->next->value = tmp;
 	}
+	ft_printf("s%c\n", name);
 }
 
 void	swap_all(t_data *data)
@@ -45,7 +46,7 @@ void	push_a(t_data *data)
 		del_top_stack(data, 'b');
 		add_top_stack(data, 'a', tmp);
 	}
-	
+	ft_printf("pa\n");
 }
 
 void	push_b(t_data *data)
@@ -59,4 +60,5 @@ void	push_b(t_data *data)
 		del_top_stack(data, 'a');
 		add_top_stack(data, 'b', tmp);
 	}
+	ft_printf("pb\n");
 }
