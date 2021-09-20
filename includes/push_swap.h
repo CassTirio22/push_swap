@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/14 16:18:42 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/18 18:36:20 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_data
 **
 */
 
+int	check_stack_b(t_data *data, int val, int stack_len);
 int		find_hold_first(t_data *data, int min, int max);
 int		find_hold_last(t_data *data, int min, int max);
 void	move_chunk(t_data *data);

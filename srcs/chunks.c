@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:12:15 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/18 18:19:37 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/18 18:31:03 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ void	move_chunk(t_data *data)
 	else
 		while (j--)
 			reverse_rotate(data, 'a');
-	data->a = go_start(data, 'a');
 	i = check_stack_b(data, data->a->value, stack_len(data, 'b'));
 	push_b(data);
 	j = -1;

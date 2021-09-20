@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/18 17:38:50 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/18 18:33:07 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,10 @@ int main(int argc, char **argv)
 	fill_stack_a(argc, argv, &data);
 	duplicate_nbr(data.a, argc);
 	find_chunks(&data);
-	print_stacks(data);
 	move_chunk(&data);
-	print_stacks(data);
 	move_chunk(&data);
-	print_stacks(data);
 	move_chunk(&data);
-	print_stacks(data);
 	move_chunk(&data);
-	print_stacks(data);
 	move_chunk(&data);
 //	solve_max_5(&data);
 //	make_commands(&data);
