@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:12:15 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/18 18:31:03 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/20 19:10:16 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ static void	sort_array(int	*array, int size)
 	}
 }
 
+void	make_all_chunks(t_data *data, int size_array)
+{
+	int i;
+
+	i = -1;
+	while (++i <= size_array / 4)
+		move_chunk(data, INT_MIN, data->quarter);
+	i--;
+	while (++i <= size_array / 2)
+		move_chunk(data, data->quarter + 1, data->half);
+	i--;
+	while (++i <= size_array * 3 / 4)
+		move_chunk(data, data->half + 1, data->third_quarter);
+	i--;
+	while (++i <= size_array)
+		move_chunk(data, data->third_quarter, INT_MAX);
+	while (i--)
+		push_a(data);
+}
+
 void	find_chunks(t_data *data)
 {
 	int	*array;
@@ -54,6 +74,7 @@ void	find_chunks(t_data *data)
 	data->quarter = array[i / 4];
 	data->half = array[i / 2];
 	data->third_quarter = array[(i / 4) * 3];
+	make_all_chunks(data, i);
 	free(array);
 }
 
@@ -123,19 +144,20 @@ int	check_stack_b(t_data *data, int val, int stack_len)
 	return (i);
 }
 
-void	move_chunk(t_data *data)
+void	move_chunk(t_data *data, int min, int max)
 {
 	int	i;
 	int	j;
 
-	i = find_hold_first(data, INT_MIN, data->quarter);
-	j = find_hold_last(data, INT_MIN, data->quarter);
+	i = find_hold_first(data, min, max);
+	j = find_hold_last(data, min, max);
 	if (i < j)
 		while (i--)
 			rotate(data, 'a');
 	else
 		while (j--)
 			reverse_rotate(data, 'a');
+	data->a = go_start(data, 'a');
 	i = check_stack_b(data, data->a->value, stack_len(data, 'b'));
 	push_b(data);
 	j = -1;
@@ -147,4 +169,6 @@ void	move_chunk(t_data *data)
 	else if (i)
 		while (++j < stack_len(data, 'b') - i)
 			rotate(data, 'b');
+	data->a = go_start(data, 'a');
+	data->b = go_start(data, 'b');
 }
