@@ -6,15 +6,15 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:12:15 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/20 19:10:16 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/21 15:17:11 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	sort_array(int	*array, int size)
+void	sort_array(int	*array, int size)
 {
-	int i;
+	int	i;
 	int	j;
 	int	tmp;
 
@@ -36,7 +36,7 @@ static void	sort_array(int	*array, int size)
 
 void	make_all_chunks(t_data *data, int size_array)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i <= size_array / 4)
@@ -63,7 +63,7 @@ void	find_chunks(t_data *data)
 	data->a = go_start(data, 'a');
 	array = (int *)malloc(sizeof(int) * stack_len(data, 'a'));
 	if (!array)
-		ft_error(1);
+		ft_error();
 	while (++i < stack_len(data, 'a') - 1)
 	{
 		array[i] = data->a->value;
@@ -73,56 +73,18 @@ void	find_chunks(t_data *data)
 	sort_array(array, i);
 	data->quarter = array[i / 4];
 	data->half = array[i / 2];
-	data->third_quarter = array[(i / 4) * 3];
+	data->third_quarter = array[i * 3 / 4];
 	make_all_chunks(data, i);
 	free(array);
-}
-
-int	find_hold_first(t_data *data, int min, int max)
-{
-	int i;
-
-	i = 0;
-	data->a = go_start(data, 'a');
-	while (data->a->next)
-	{
-		if (data->a->value <= max && data->a->value >= min)
-		{
-			data->hold_first = data->a->value;
-			break;
-		}
-		i++;
-		data->a = data->a->next;
-	}
-	return (i);
-}
-
-int	find_hold_last(t_data *data, int min, int max)
-{
-	int	i;
-
-	i = 0;
-	data->a = go_end(data, 'a');
-	while (data->a->previous)
-	{
-		if (data->a->value <= max && data->a->value >= min)
-		{
-			data->hold_last = data->a->value;
-			break;
-		}
-		i++;
-		data->a = data->a->previous;
-	}
-	return (i + 1);
 }
 
 int	check_stack_b(t_data *data, int val, int stack_len)
 {
 	int	i;
 	int	j;
-	
+
 	if (!data->b || !data->b->next)
-		return (0);
+		return (ft_ternint(!data->b, 0, -1));
 	find_smallest(data, 'b');
 	find_biggest(data, 'b');
 	if (data->smallest > val || val > data->biggest)

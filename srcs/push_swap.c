@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/20 19:15:12 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/21 15:54:43 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	void	duplicate_nbr(t_stack *stack, int argc)
 		while (stack->next)
 		{
 			if (tmp->value == stack->next->value)
-				ft_error(2);
+				ft_error();
 			stack = stack->next;
 		}
 		stack = tmp->next;
@@ -58,62 +58,26 @@ void	print_stacks(t_data data)
 	}
 }
 
-void	ft_error(int tag)
+void	ft_error(void)
 {
-	if (!tag)
-		ft_putstr_fd("Please put some numbers in arguments.\n", STDERR_FILENO);
-	else if (tag == 1)
-		ft_putstr_fd("Malloc error.\n", STDERR_FILENO);
-	else if (tag == 2)
-		ft_putstr_fd("Wrong arguments.\n", STDERR_FILENO);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
 	exit(1);
 }
 
-void	make_commands(t_data *data)
-{
-	char	*line;
-
-	line = NULL;
-	while (get_next_line(0, &line))
-	{
-		if (!ft_strncmp(line, "pa", 3))
-			push_a(data);
-		else if (!ft_strncmp(line, "pb", 3))
-			push_b(data);
-		else if (!ft_strncmp(line, "rra", 4))
-			reverse_rotate(data, 'a');
-		else if (!ft_strncmp(line, "rrb", 4))
-			reverse_rotate(data, 'b');
-		else if (!ft_strncmp(line, "ra", 2))
-			rotate(data, 'a');
-		else if (!ft_strncmp(line, "rb", 3))
-			rotate(data, 'b');
-		else if (!ft_strncmp(line, "rr", 3))
-			rotate_all(data);
-		else if (!ft_strncmp(line, "rrr", 4))
-			reverse_rotate_all(data);
-		//ft_printf("\033[H\033[2J");
-		print_stacks(*data);
-		free(line);
-		line = NULL;
-	}
-}
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	ft_printf("\033[H\033[2J");
 	data.a = NULL;
 	data.b = NULL;
 	if (argc == 1)
-		ft_error(0);
+		ft_error();
 	fill_stack_a(argc, argv, &data);
 	duplicate_nbr(data.a, argc);
 	if (stack_len(&data, 'a') <= 5)
 		solve_max_5(&data);
 	else
 		find_chunks(&data);
-//	print_stacks(data);
+	print_stacks(data);
 	return (0);
 }

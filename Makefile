@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/11 12:48:35 by ctirions          #+#    #+#              #
-#    Updated: 2021/09/14 15:55:02 by ctirions         ###   ########.fr        #
+#    Updated: 2021/09/21 15:48:53 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,18 @@ SRCS		=	push_swap.c				\
 				solve_max_5.c			\
 				utils.c					\
 				find_biggest_smallest.c	\
-				chunks.c			\
+				chunks.c				\
+				hold_first_last.c		\
+				
+SRCS_BONUS	=	checker.c
 
 OBJS		=	$(addprefix srcs/, ${SRCS:.c=.o})
+OBJS_BONUS	=	$(addprefix srcs/, ${SRCS_BONUS:.c=.o})
 
 NAME		=	push_swap.a
 EXEC		=	push_swap
+
+EXEC_BONUS	=	checker
 
 LIBFT		=	./libft
 
@@ -50,8 +56,13 @@ $(NAME):		${OBJS}
 				@ar -rcs ${NAME} ${OBJS}
 				@ranlib ${NAME}
 				@${CC} ${CFLAGS} ${NAME} -o ${EXEC}
+				
 all:			${NAME}
 
+bonus:			${NAME} ${OBJS_BONUS}
+				@ar -rcs ${NAME} ${OBJS_BONUS}
+				@ranlib ${NAME}
+				@${CC} ${CFLAGS} ${NAME} -o ${EXEC_BONUS}
 clean:			
 				@rm -f ${OBJS}
 				@make -C ${LIBFT} clean

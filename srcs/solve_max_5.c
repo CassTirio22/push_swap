@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 18:20:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/14 13:56:18 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:52:14 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,19 @@ static void	solve_3(t_data *data)
 
 static void	solve_4(t_data *data)
 {
-	int 	i;
-	int		tmp;
-
-	i = -1;
 	find_smallest(data, 'a');
 	data->a = go_start(data, 'a');
-	while (data->a->next)
-	{
-		++i;
-		if (data->a->value == data->smallest)
-			tmp = i;
-		data->a = data->a->next;
-	}
 	if (data->a->value == data->smallest)
-		tmp = i + 1;
-	data->a = go_start(data, 'a');
-	i = -1;
-	if (tmp < 2)
-		while (tmp--)
-			rotate(data, 'a');
+		;
+	else if (data->a->next->value == data->smallest)
+		rotate(data, 'a');
+	else if (data->a->next->next->value == data->smallest)
+	{
+		rotate(data, 'a');
+		rotate(data, 'a');
+	}
 	else
-		while (++i < 4 - tmp)
-			reverse_rotate(data, 'a');
+		reverse_rotate(data, 'a');
 	push_b(data);
 	solve_3(data);
 	push_a(data);
@@ -62,29 +52,24 @@ static void	solve_4(t_data *data)
 
 static void	solve_5(t_data *data)
 {
-	int i;
-	int	tmp;
-
-	i = -1;
 	find_smallest(data, 'a');
 	data->a = go_start(data, 'a');
-	while (data->a->next)
-	{
-		++i;
-		if (data->a->value == data->smallest)
-			tmp = i;
-		data->a = data->a->next;
-	}
 	if (data->a->value == data->smallest)
-		tmp = i + 1;
-	data->a = go_start(data, 'a');
-	i = -1;
-	if (tmp < 3)
-		while (tmp--)
-			rotate(data, 'a');
+		;
+	else if (data->a->next->value == data->smallest)
+		rotate(data, 'a');
+	else if (data->a->next->next->value == data->smallest)
+	{
+		rotate(data, 'a');
+		rotate(data, 'a');
+	}
+	else if (data->a->next->next->next->value == data->smallest)
+	{
+		reverse_rotate(data, 'a');
+		reverse_rotate(data, 'a');
+	}
 	else
-		while (++i < 5 - tmp)
-			reverse_rotate(data, 'a');
+		reverse_rotate(data, 'a');
 	push_b(data);
 	solve_4(data);
 	push_a(data);

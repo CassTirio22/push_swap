@@ -6,16 +6,12 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:03:57 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/12 13:21:19 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:27:31 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
-#endif
 
 # include <stdlib.h>
 # include <unistd.h>

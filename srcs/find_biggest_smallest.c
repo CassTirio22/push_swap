@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 18:31:08 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/13 14:59:30 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:36:59 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	find_biggest(t_data *data, char name)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	data->biggest = INT_MIN;
 	stack = tern_stack(name == 'a', data->a, data->b);

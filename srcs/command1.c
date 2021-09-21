@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:28:56 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/14 14:00:00 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:36:10 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	swap_all(t_data *data)
 
 void	push_a(t_data *data)
 {
-	int		tmp;
-	
+	int	tmp;
+
 	if (data->b)
 	{
 		data->b = go_start(data, 'b');
@@ -51,8 +51,8 @@ void	push_a(t_data *data)
 
 void	push_b(t_data *data)
 {
-	int		tmp;
-	
+	int	tmp;
+
 	if (data->a)
 	{
 		data->a = go_start(data, 'a');
