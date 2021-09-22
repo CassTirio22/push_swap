@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:11:36 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/22 18:27:43 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:32:10 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int argc, char **argv)
 	data.a = NULL;
 	data.b = NULL;
 	if (argc == 1)
-		ft_error();
+		return (0);
 	fill_stack_a(argc, argv, &data);
 	duplicate_nbr(data.a, argc);
 	make_commands(&data);
