@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/21 15:54:43 by ctirions         ###   ########.fr       */
+/*   Created: 2021/09/22 14:45:21 by ctirions          #+#    #+#             */
+/*   Updated: 2021/09/22 14:51:03 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static	void	duplicate_nbr(t_stack *stack, int argc)
+void	duplicate_nbr(t_stack *stack, int argc)
 {
 	t_stack	*tmp;
 
@@ -62,22 +62,4 @@ void	ft_error(void)
 {
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	exit(1);
-}
-
-int	main(int argc, char **argv)
-{
-	t_data	data;
-
-	data.a = NULL;
-	data.b = NULL;
-	if (argc == 1)
-		ft_error();
-	fill_stack_a(argc, argv, &data);
-	duplicate_nbr(data.a, argc);
-	if (stack_len(&data, 'a') <= 5)
-		solve_max_5(&data);
-	else
-		find_chunks(&data);
-	print_stacks(data);
-	return (0);
 }

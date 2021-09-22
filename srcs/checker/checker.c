@@ -6,13 +6,33 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:11:36 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/21 15:43:36 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:26:44 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	make_commands(t_data *data)
+static void	checker(t_data *data)
+{
+	t_stack	*stack;
+	int		tmp;
+
+	if (data->b)
+		return ;
+	stack = go_start(data, 'a');
+	tmp = stack->value;
+	while (stack->next)
+	{
+		if (tmp > stack->next->value)
+			return ;
+		stack = stack->next;
+		tmp = stack->value;
+	}
+	ft_printf("OK\n");
+	exit(0);
+}
+
+static void	make_commands(t_data *data)
 {
 	char	*line;
 
@@ -23,6 +43,12 @@ void	make_commands(t_data *data)
 			push_a(data);
 		else if (!ft_strncmp(line, "pb", 3))
 			push_b(data);
+		else if (!ft_strncmp(line, "sa", 3))
+			swap(data, 'a');
+		else if (!ft_strncmp(line, "sb", 3))
+			swap(data, 'b');
+		else if (!ft_strncmp(line , "ss", 3))
+			swap_all(data);
 		else if (!ft_strncmp(line, "rra", 4))
 			reverse_rotate(data, 'a');
 		else if (!ft_strncmp(line, "rrb", 4))
@@ -35,8 +61,12 @@ void	make_commands(t_data *data)
 			rotate_all(data);
 		else if (!ft_strncmp(line, "rrr", 4))
 			reverse_rotate_all(data);
+		else if (!ft_strncmp(line, "\0", 1))
+			break ;
 		free(line);
 		line = NULL;
+		checker(data);
+		print_stacks(*data);
 	}
 }
 
@@ -51,5 +81,7 @@ int	main(int argc, char **argv)
 	fill_stack_a(argc, argv, &data);
 	duplicate_nbr(data.a, argc);
 	make_commands(&data);
+	checker(&data);
+	ft_printf("KO\n");
 	return (0);
 }

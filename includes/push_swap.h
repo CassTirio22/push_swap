@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/21 15:18:27 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/22 14:46:08 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_data
 **
 */
 
+void	duplicate_nbr(t_stack *stack, int argc);
 void	sort_array(int	*array, int size);
 void	make_all_chunks(t_data *data, int size_array);
 int		check_stack_b(t_data *data, int val, int stack_len);
