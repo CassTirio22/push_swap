@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/11 12:48:35 by ctirions          #+#    #+#              #
-#    Updated: 2021/09/22 14:59:37 by ctirions         ###   ########.fr        #
+#    Updated: 2021/09/22 18:30:13 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,8 @@ SRCS_BONUS	=	checker.c				\
 				command2.c				\
 				init.c					\
 				top_stack.c				\
-				solve_max_5.c			\
 				utils.c					\
 				utils2.c				\
-				find_biggest_smallest.c	\
-				chunks.c				\
-				hold_first_last.c		\
 
 OBJS		=	$(addprefix srcs/push_swap/, ${SRCS:.c=.o})
 OBJS_BONUS	=	$(addprefix srcs/checker/, ${SRCS_BONUS:.c=.o})

@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 14:07:52 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/21 16:04:53 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:01:34 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	fill_stack_a(int argc, char **argv, t_data *data)
 	while (++i < argc)
 	{
 		j = -1;
+		if (!argv[i][0])
+			ft_error();
 		while (argv[i][++j])
 		{
 			if (!ft_isdigit(argv[i][j]) && argv[i][j] != '+' \

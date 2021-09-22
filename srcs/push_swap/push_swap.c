@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/22 14:53:19 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:28:01 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	main(int argc, char **argv)
 		solve_max_5(&data);
 	else
 		find_chunks(&data);
-	print_stacks(data);
+	exit(1);
 	return (0);
 }
