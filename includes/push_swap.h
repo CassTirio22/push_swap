@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/22 18:22:48 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/10/20 01:09:03 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_data
 	int		third_quarter;
 	int		smallest;
 	int		biggest;
+	int		*array;
 	t_stack	*a;
 	t_stack	*b;
 }				t_data;
@@ -41,9 +42,9 @@ typedef struct s_data
 
 void	find_biggest(t_data *data, char name);
 void	find_smallest(t_data *data, char name);
-void	find_chunks(t_data *data);
-int		find_hold_first(t_data *data, int min, int max);
-int		find_hold_last(t_data *data, int min, int max);
+void	find_chunks(t_data *data, int div);
+int		find_hold_first(t_data *data, int min, int max, char name);
+int		find_hold_last(t_data *data, int min, int max, char name);
 
 /*
 **		INIT
@@ -69,9 +70,8 @@ int		stack_len(t_data *data, char name);
 **		SOLVER
 */
 
-void	make_all_chunks(t_data *data, int size_array);
-void	move_chunk(t_data *data, int min, int max);
-int		check_stack_b(t_data *data, int val, int stack_len);
+void	move_chunk(t_data *data, int min, int max, int size);
+void	repush_in_order(t_data *data, int size_array);
 void	solve_max_5(t_data *data);
 
 /*

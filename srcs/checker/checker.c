@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:11:36 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/22 18:32:10 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/10/19 16:49:08 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static void	make_commands(t_data *data)
 	line = NULL;
 	while (get_next_line(0, &line))
 	{
+		data->a = go_start(data, 'a');
+		data->b = go_start(data, 'b');
 		make_commands2(data, line);
 		if (!ft_strncmp(line, "ra", 2))
 			rotate(data, 'a');
@@ -69,6 +71,7 @@ static void	make_commands(t_data *data)
 		else if (!ft_strncmp(line, "\0", 1))
 			break ;
 		data->a = go_start(data, 'a');
+		data->b = go_start(data, 'b');
 		free(line);
 		line = NULL;
 		checker(data);

@@ -6,46 +6,50 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:33:55 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/21 14:35:34 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/10/20 01:08:31 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	find_hold_first(t_data *data, int min, int max)
+int	find_hold_first(t_data *data, int min, int max, char name)
 {
-	int	i;
+	int		i;
+	t_stack	*stack;
 
+	stack = tern_stack(name == 'a', data->a, data->b);
 	i = 0;
-	data->a = go_start(data, 'a');
-	while (data->a->next)
+	stack = go_start(data, name);
+	while (stack->next)
 	{
-		if (data->a->value <= max && data->a->value >= min)
+		if (stack->value <= max && stack->value >= min)
 		{
-			data->hold_first = data->a->value;
+			data->hold_first = stack->value;
 			break ;
 		}
 		i++;
-		data->a = data->a->next;
+		stack = stack->next;
 	}
 	return (i);
 }
 
-int	find_hold_last(t_data *data, int min, int max)
+int	find_hold_last(t_data *data, int min, int max, char name)
 {
 	int	i;
+	t_stack	*stack;
 
+	stack = tern_stack(name == 'a', data->a, data->b);
 	i = 0;
-	data->a = go_end(data, 'a');
-	while (data->a->previous)
+	stack = go_end(data, name);
+	while (stack->previous)
 	{
-		if (data->a->value <= max && data->a->value >= min)
+		if (stack->value <= max && stack->value >= min)
 		{
-			data->hold_last = data->a->value;
+			data->hold_last = stack->value;
 			break ;
 		}
 		i++;
-		data->a = data->a->previous;
+		stack = stack->previous;
 	}
 	return (i + 1);
 }

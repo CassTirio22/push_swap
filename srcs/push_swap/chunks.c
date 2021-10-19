@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:12:15 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/22 17:59:01 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/10/20 01:19:30 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,103 +34,66 @@ void	sort_array(int	*array, int size)
 	}
 }
 
-void	make_all_chunks(t_data *data, int size_array)
+void	find_chunks(t_data *data, int div)
 {
 	int	i;
-
-	i = -1;
-	while (++i <= size_array / 4)
-		move_chunk(data, INT_MIN, data->quarter);
-	i--;
-	while (++i <= size_array / 2)
-		move_chunk(data, data->quarter + 1, data->half);
-	i--;
-	while (++i <= size_array * 3 / 4)
-		move_chunk(data, data->half + 1, data->third_quarter);
-	i--;
-	while (++i <= size_array)
-		move_chunk(data, data->third_quarter, INT_MAX);
-	while (i--)
-		push_a(data);
-}
-
-void	find_chunks(t_data *data)
-{
-	int	*array;
-	int	i;
+	int	j;
 
 	i = -1;
 	data->a = go_start(data, 'a');
-	array = (int *)malloc(sizeof(int) * stack_len(data, 'a'));
-	if (!array)
+	data->array = (int *)malloc(sizeof(int) * stack_len(data, 'a'));
+	if (!data->array)
 		ft_error();
 	while (++i < stack_len(data, 'a') - 1)
 	{
-		array[i] = data->a->value;
+		data->array[i] = data->a->value;
 		data->a = data->a->next;
 	}
-	array[i] = data->a->value;
-	sort_array(array, i);
-	data->quarter = array[i / 4];
-	data->half = array[i / 2];
-	data->third_quarter = array[i * 3 / 4];
-	make_all_chunks(data, i);
-	free(array);
+	data->array[i] = data->a->value;
+	sort_array(data->array, i + 1);
+	j = -1;
+	while (++j < div)
+		move_chunk(data, data->array[i * j / div],\
+		data->array[i * (j + 1) / div], i / div + 1);
+	repush_in_order(data, i);
 }
 
-int	check_stack_b(t_data *data, int val, int stack_len)
+void	repush_in_order(t_data *data, int size)
 {
 	int	i;
 	int	j;
 
-	if (!data->b || !data->b->next)
-		return (ft_ternint(data->b && data->b->value > val, -1, 0));
-	find_smallest(data, 'b');
-	find_biggest(data, 'b');
-	if (data->smallest > val || val > data->biggest)
-		return (ft_ternint(val < data->smallest, -1, 0));
-	i = 0;
-	data->b = go_start(data, 'b');
-	while (data->b->next && val < data->b->value)
+	size++;
+	while (size--)
 	{
-		data->b = data->b->next;
-		i++;
+		i = find_hold_first(data, data->array[size], data->array[size], 'b');
+		j = find_hold_last(data, data->array[size], data->array[size], 'b');
+		if (i < j)
+			while (i--)
+				rotate(data, 'b');
+		else
+			while (j--)
+				reverse_rotate(data, 'b');
+		push_a(data);
+		data->b = go_start(data, 'b');
 	}
-	j = -1;
-	if (i < stack_len / 2)
-		while (++j < i)
-			rotate(data, 'b');
-	else
-		while (++j < stack_len - i)
-			reverse_rotate(data, 'b');
-	return (i);
 }
 
-void	move_chunk(t_data *data, int min, int max)
+void	move_chunk(t_data *data, int min, int max, int size)
 {
 	int	i;
 	int	j;
-
-	i = find_hold_first(data, min, max);
-	j = find_hold_last(data, min, max);
-	if (i < j)
-		while (i--)
-			rotate(data, 'a');
-	else
-		while (j--)
-			reverse_rotate(data, 'a');
 	data->a = go_start(data, 'a');
-	i = check_stack_b(data, data->a->value, stack_len(data, 'b'));
-	push_b(data);
-	j = -1;
-	if (i == -1)
-		rotate(data, 'b');
-	else if (i && i < (stack_len(data, 'b') - 1) / 2)
-		while (++j < i)
-			reverse_rotate(data, 'b');
-	else if (i)
-		while (++j < stack_len(data, 'b') - i)
-			rotate(data, 'b');
-	data->a = go_start(data, 'a');
-	data->b = go_start(data, 'b');
+	while (size-- && data->a)
+	{
+		i = find_hold_first(data, min, max, 'a');
+		j = find_hold_last(data, min, max, 'a');
+		if (i < j)
+			while (i--)
+				rotate(data, 'a');
+		else
+			while (j--)
+				reverse_rotate(data, 'a');
+		push_b(data);
+	}
 }
