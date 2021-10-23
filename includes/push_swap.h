@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/20 01:09:03 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/10/23 17:28:18 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_data
 	int		smallest;
 	int		biggest;
 	int		*array;
+	int		check;
 	t_stack	*a;
 	t_stack	*b;
 }				t_data;
@@ -62,7 +63,7 @@ t_stack	*go_start(t_data *data, char name);
 t_stack	*go_end(t_data *data, char name);
 t_stack	*tern_stack(int boolean, t_stack *a, t_stack *b);
 t_stack	**tern_stack2(int boolean, t_stack **a, t_stack **b);
-void	ft_error(void);
+void	ft_error(int flag);
 void	print_stacks(t_data data);
 int		stack_len(t_data *data, char name);
 

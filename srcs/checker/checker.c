@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:11:36 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/19 16:49:08 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/10/23 17:32:39 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ static void	checker(t_data *data)
 
 static void	make_commands2(t_data *data, char *line)
 {
-	if (!ft_strncmp(line, "pa", 3))
+	if (!ft_strncmp(line, "pa", 3) && ++data->check)
 		push_a(data);
-	else if (!ft_strncmp(line, "pb", 3))
+	else if (!ft_strncmp(line, "pb", 3) && ++data->check)
 		push_b(data);
-	else if (!ft_strncmp(line, "sa", 3))
+	else if (!ft_strncmp(line, "sa", 3) && ++data->check)
 		swap(data, 'a');
-	else if (!ft_strncmp(line, "sb", 3))
+	else if (!ft_strncmp(line, "sb", 3) && ++data->check)
 		swap(data, 'b');
-	else if (!ft_strncmp(line, "ss", 3))
+	else if (!ft_strncmp(line, "ss", 3) && ++data->check)
 		swap_all(data);
-	else if (!ft_strncmp(line, "rra", 4))
+	else if (!ft_strncmp(line, "rra", 4) && ++data->check)
 		reverse_rotate(data, 'a');
-	else if (!ft_strncmp(line, "rrb", 4))
+	else if (!ft_strncmp(line, "rrb", 4) && ++data->check)
 		reverse_rotate(data, 'b');
 }
 
@@ -55,6 +55,7 @@ static void	make_commands(t_data *data)
 	char	*line;
 
 	line = NULL;
+	data->check = 0;
 	while (get_next_line(0, &line))
 	{
 		data->a = go_start(data, 'a');
@@ -70,6 +71,8 @@ static void	make_commands(t_data *data)
 			reverse_rotate_all(data);
 		else if (!ft_strncmp(line, "\0", 1))
 			break ;
+		else if (!data->check)
+			ft_error(1);
 		data->a = go_start(data, 'a');
 		data->b = go_start(data, 'b');
 		free(line);

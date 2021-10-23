@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:45:21 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/22 14:51:03 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/10/23 17:37:38 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	duplicate_nbr(t_stack *stack, int argc)
 		while (stack->next)
 		{
 			if (tmp->value == stack->next->value)
-				ft_error();
+				ft_error(1);
 			stack = stack->next;
 		}
 		stack = tmp->next;
@@ -58,8 +58,11 @@ void	print_stacks(t_data data)
 	}
 }
 
-void	ft_error(void)
+void	ft_error(int flag)
 {
-	ft_putstr_fd("Error\n", STDERR_FILENO);
+	if (flag == 1)
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+	else if (flag == 2)
+		ft_putstr_fd("KO\n", STDERR_FILENO);
 	exit(1);
 }
