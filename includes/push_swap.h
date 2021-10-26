@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:52:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/23 17:28:18 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:06:04 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_stack
 
 typedef struct s_data
 {
+	int		boolean;
 	int		hold_first;
 	int		hold_last;
 	int		quarter;
@@ -31,6 +32,7 @@ typedef struct s_data
 	int		third_quarter;
 	int		smallest;
 	int		biggest;
+	int		second_biggest;
 	int		*array;
 	int		check;
 	t_stack	*a;
@@ -52,7 +54,7 @@ int		find_hold_last(t_data *data, int min, int max, char name);
 */
 
 void	fill_stack_a(int argc, char **argv, t_data *data);
-void	duplicate_nbr(t_stack *stack, int argc);
+void	duplicate_nbr(t_stack *stack, int argc, t_data *data);
 void	sort_array(int	*array, int size);
 
 /*
@@ -63,9 +65,11 @@ t_stack	*go_start(t_data *data, char name);
 t_stack	*go_end(t_data *data, char name);
 t_stack	*tern_stack(int boolean, t_stack *a, t_stack *b);
 t_stack	**tern_stack2(int boolean, t_stack **a, t_stack **b);
-void	ft_error(int flag);
+void	ft_error(int flag, t_data *data);
 void	print_stacks(t_data data);
 int		stack_len(t_data *data, char name);
+void	free_data(t_data *data);
+void	free_stack(t_stack *stack);
 
 /*
 **		SOLVER
