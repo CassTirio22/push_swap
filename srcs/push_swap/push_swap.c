@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 12:54:27 by ctirions          #+#    #+#             */
-/*   Updated: 2021/11/03 13:54:15 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:58:59 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	checker(t_data *data)
 		stack = stack->next;
 		tmp = stack->value;
 	}
-	ft_printf("OK\n");
 	exit(1);
 }
 

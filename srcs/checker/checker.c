@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:11:36 by ctirions          #+#    #+#             */
-/*   Updated: 2021/11/03 13:48:08 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:57:57 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static void	make_commands(t_data *data)
 	char	*line;
 
 	line = NULL;
-	data->check = 0;
 	while (get_next_line(0, &line))
 	{
+		data->check = 0;
 		data->a = go_start(data, 'a');
 		data->b = go_start(data, 'b');
 		make_commands2(data, line);
