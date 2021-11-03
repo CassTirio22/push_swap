@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 13:56:37 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/23 17:32:57 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:37:38 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	rotate(t_data *data, char name)
 
 	stack = tern_stack(name == 'a', data->a, data->b);
 	if (stack_len(data, name) < 2)
-		ft_error(2);
+		ft_error(2, data);
 	while (stack->previous)
 		stack = stack->previous;
 	tmp = stack;
@@ -34,7 +34,7 @@ void	rotate(t_data *data, char name)
 void	rotate_all(t_data *data)
 {
 	if (stack_len(data, 'a') < 2 || stack_len(data, 'b') < 2)
-		ft_error(2);
+		ft_error(2, data);
 	rotate(data, 'a');
 	rotate(data, 'b');
 }
@@ -46,7 +46,7 @@ void	reverse_rotate(t_data *data, char name)
 
 	stack = tern_stack(name == 'a', data->a, data->b);
 	if (stack_len(data, name) < 2)
-		ft_error(2);
+		ft_error(2, data);
 	while (stack->next)
 		stack = stack->next;
 	tmp = stack;
@@ -61,7 +61,7 @@ void	reverse_rotate(t_data *data, char name)
 void	reverse_rotate_all(t_data *data)
 {
 	if (stack_len(data, 'a') < 2 || stack_len(data, 'b') < 2)
-		ft_error(2);
+		ft_error(2, data);
 	reverse_rotate(data, 'a');
 	reverse_rotate(data, 'b');
 }

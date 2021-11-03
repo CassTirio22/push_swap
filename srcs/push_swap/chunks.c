@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:12:15 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/26 17:23:51 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:34:35 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	find_chunks(t_data *data, int div)
 	sort_array(data->array, i + 1);
 	j = -1;
 	while (++j < div)
-		move_chunk(data, data->array[i * j / div],\
+		move_chunk(data, data->array[i * j / div], \
 		data->array[i * (j + 1) / div], i / div + 1);
 	repush_in_order(data, i + 1);
 }
@@ -108,6 +108,7 @@ void	move_chunk(t_data *data, int min, int max, int size)
 {
 	int	i;
 	int	j;
+
 	data->a = go_start(data, 'a');
 	while (size-- && data->a)
 	{

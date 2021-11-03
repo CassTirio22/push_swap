@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:11:36 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/23 17:32:39 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:48:08 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	make_commands(t_data *data)
 		data->a = go_start(data, 'a');
 		data->b = go_start(data, 'b');
 		make_commands2(data, line);
-		if (!ft_strncmp(line, "ra", 2))
+		if (!ft_strncmp(line, "ra", 3))
 			rotate(data, 'a');
 		else if (!ft_strncmp(line, "rb", 3))
 			rotate(data, 'b');
@@ -72,9 +72,7 @@ static void	make_commands(t_data *data)
 		else if (!ft_strncmp(line, "\0", 1))
 			break ;
 		else if (!data->check)
-			ft_error(1);
-		data->a = go_start(data, 'a');
-		data->b = go_start(data, 'b');
+			ft_error(1, data);
 		free(line);
 		line = NULL;
 		checker(data);
@@ -90,7 +88,7 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	fill_stack_a(argc, argv, &data);
-	duplicate_nbr(data.a, argc);
+	duplicate_nbr(data.a, argc, &data);
 	make_commands(&data);
 	checker(&data);
 	ft_printf("KO\n");

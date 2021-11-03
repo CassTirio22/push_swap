@@ -6,19 +6,19 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 14:07:52 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/23 17:34:13 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:39:24 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	add_number(int value, t_stack **stack)
+static void	add_number(int value, t_stack **stack, t_data *data)
 {
 	if (!*stack)
 	{
 		*stack = (t_stack *)malloc(sizeof(t_stack));
 		if (!*stack)
-			ft_error(1);
+			ft_error(1, data);
 		(*stack)->value = value;
 		(*stack)->previous = NULL;
 		(*stack)->next = NULL;
@@ -27,7 +27,7 @@ static void	add_number(int value, t_stack **stack)
 	{
 		(*stack)->next = (t_stack *)malloc(sizeof(t_stack));
 		if (!(*stack)->next)
-			ft_error(1);
+			ft_error(1, data);
 		(*stack)->next->value = value;
 		(*stack)->next->previous = *stack;
 		(*stack)->next->next = NULL;
@@ -45,14 +45,14 @@ void	fill_stack_a(int argc, char **argv, t_data *data)
 	{
 		j = -1;
 		if (!argv[i][0])
-			ft_error(1);
+			ft_error(1, data);
 		while (argv[i][++j])
 		{
 			if (!ft_isdigit(argv[i][j]) && argv[i][j] != '+' \
 			&& argv[i][j] != '-')
-				ft_error(1);
+				ft_error(1, data);
 		}
-		add_number(ft_atoi(argv[i]), &data->a);
+		add_number(ft_atoi(argv[i]), &data->a, data);
 	}
 	data->a = go_start(data, 'a');
 }

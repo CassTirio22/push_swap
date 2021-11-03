@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 14:31:11 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/23 17:34:34 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:39:50 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	add_top_stack(t_data *data, char name, int value)
 	{
 		tmp = (t_stack *)malloc(sizeof(t_stack));
 		if (!tmp)
-			ft_error(1);
+			ft_error(1, data);
 		tmp->next = *stack;
 		tmp->previous = NULL;
 		(*stack)->previous = tmp;
@@ -55,7 +55,7 @@ void	add_top_stack(t_data *data, char name, int value)
 	{
 		(*stack) = (t_stack *)malloc(sizeof(t_stack));
 		if (!*stack)
-			ft_error(1);
+			ft_error(1, data);
 		(*stack)->next = NULL;
 		(*stack)->previous = NULL;
 		(*stack)->value = value;

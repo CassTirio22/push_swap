@@ -6,13 +6,13 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:45:21 by ctirions          #+#    #+#             */
-/*   Updated: 2021/10/23 17:37:38 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:42:23 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	duplicate_nbr(t_stack *stack, int argc)
+void	duplicate_nbr(t_stack *stack, int argc, t_data *data)
 {
 	t_stack	*tmp;
 
@@ -24,7 +24,7 @@ void	duplicate_nbr(t_stack *stack, int argc)
 		while (stack->next)
 		{
 			if (tmp->value == stack->next->value)
-				ft_error(1);
+				ft_error(1, data);
 			stack = stack->next;
 		}
 		stack = tmp->next;
@@ -58,11 +58,34 @@ void	print_stacks(t_data data)
 	}
 }
 
-void	ft_error(int flag)
+void	free_stack(t_stack *stack)
+{
+	if (!stack)
+		return ;
+	while (stack->next)
+	{
+		stack = stack->next;
+		free(stack->previous);
+	}
+	free(stack);
+}
+
+void	free_data(t_data *data)
+{
+	data->a = go_start(data, 'a');
+	data->b = go_start(data, 'b');
+	free_stack(data->a);
+	free_stack(data->b);
+	if (data->array)
+		free(data->array);
+}
+
+void	ft_error(int flag, t_data *data)
 {
 	if (flag == 1)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 	else if (flag == 2)
 		ft_putstr_fd("KO\n", STDERR_FILENO);
+	free_data(data);
 	exit(1);
 }
