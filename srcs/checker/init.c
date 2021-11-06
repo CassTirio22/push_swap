@@ -6,7 +6,7 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/11 14:07:52 by ctirions          #+#    #+#             */
-/*   Updated: 2021/11/03 13:39:24 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/06 13:44:01 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	fill_stack_a(int argc, char **argv, t_data *data)
 			ft_error(1, data);
 		while (argv[i][++j])
 		{
-			if (!ft_isdigit(argv[i][j]) && argv[i][j] != '+' \
-			&& argv[i][j] != '-')
+			if (!ft_isdigit(argv[i][0]) && argv[i][0] != '+' \
+			&& argv[i][0] != '-')
+				ft_error(1, data);
+			if (j && !ft_isdigit(argv[i][j]))
 				ft_error(1, data);
 		}
 		add_number(ft_atoi(argv[i]), &data->a, data);

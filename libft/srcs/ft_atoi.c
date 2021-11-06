@@ -6,11 +6,17 @@
 /*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 14:43:45 by ctirions          #+#    #+#             */
-/*   Updated: 2021/09/22 18:41:04 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/11/06 13:52:01 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
+
+static void	atoi_error(void)
+{
+	write(1, "Error\n", 6);
+	exit(1);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -27,15 +33,14 @@ int	ft_atoi(const char *str)
 	if (str[i] == '+' || str[i] == '-')
 		if (str[i++] == '-')
 			neg *= -1;
+	if (i && !str[i])
+		atoi_error();
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res_2 = res;
 		res = res * 10 + str[i++] - '0';
 		if (res > INT_MAX || res < res_2)
-		{
-			write(1, "Error\n", 6);
-			exit(1);
-		}
+			atoi_error();
 	}
 	return ((int)(neg * res));
 }
